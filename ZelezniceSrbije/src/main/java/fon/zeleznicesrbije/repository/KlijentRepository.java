@@ -14,6 +14,7 @@ import fon.zeleznicesrbije.domain.Klijent;
  */
 public interface KlijentRepository {
     List<Klijent> getAll();
+    Klijent getByEmailAndPassword(Klijent k);
     Klijent getById(int id);
     void add(Klijent klijent);
     void remove(Klijent klijent);

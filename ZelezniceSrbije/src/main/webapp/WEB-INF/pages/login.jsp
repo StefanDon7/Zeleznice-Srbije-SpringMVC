@@ -16,7 +16,7 @@
     <body>
         <h1>LOGIN PAGE</h1>
         THIS IS LOGIN PAGE
-         <form action="${pageContext.request.contextPath}/klijent/find" method="post">
+         <form action="${pageContext.request.contextPath}/polazak/find" method="post">
             <div class="container">   
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Unesi email" name="email" id="email" required>
@@ -28,8 +28,7 @@
             </div>
         </form>
         <div>
-            <a href="<c:url value="/klijent"/>">Register</a>       
+            <a href="<c:url value="/klijent"/>">Registruj se.</a>       
         </div>
-   
     </body>
 </html>

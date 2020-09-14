@@ -18,12 +18,18 @@ import fon.zeleznicesrbije.service.KlijentService;
  */
 @Service
 public class KlijentServiceImpl implements KlijentService {
+
     @Autowired
     private final KlijentRepository klijentRepository;
 
     @Autowired
     public KlijentServiceImpl(KlijentRepository klijentRepository) {
         this.klijentRepository = klijentRepository;
+    }
+
+    @Override
+    public Klijent getByEmailAndPassword(Klijent k) {
+        return klijentRepository.getByEmailAndPassword(k);
     }
 
     @Override
