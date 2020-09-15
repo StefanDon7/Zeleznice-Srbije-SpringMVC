@@ -11,8 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+      <c:if test="${not empty message}">
+        <div class="alert alert-info" role="alert mb-2">${message}</div>
+    </c:if>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Dobro dosli!</h1>
          <table>
             <thead>
                 <tr>

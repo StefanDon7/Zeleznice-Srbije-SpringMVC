@@ -24,9 +24,6 @@ public class HomeController  {
 
      @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home() {
-        System.out.println("====================================================================");
-        System.out.println("====================   CityController: home()    ===================");
-        System.out.println("====================================================================");
          ModelAndView modelAndView=new ModelAndView("login");
         return modelAndView;
     }

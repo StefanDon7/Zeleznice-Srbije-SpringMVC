@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fon.zeleznicesrbije.domain.Klijent;
 import org.springframework.stereotype.Controller;
 import fon.zeleznicesrbije.service.KlijentService;
+import java.util.List;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author Stefan
@@ -33,26 +36,42 @@ public class KlijentController {
         return "klijent/register";
     }
 
-
-//    @PostMapping(path = "save")
-//    public String save(HttpServletRequest request, HttpServletResponse response) {
-//        Klijent k = new Klijent();
-//        String email = request.getParameter("email");
-//        String korisnickoIme = request.getParameter("korisnickoIme");
-//        String ime = request.getParameter("ime");
-//        String prezime = request.getParameter("prezime");
-//        String lozinka = request.getParameter("lozinka");
-//      
-//        k.setEmail(email);
-//        k.setKorisnickoIme(korisnickoIme);
-//        k.setIme(ime);
-//        k.setPrezime(prezime);
-//        k.setLozinka(lozinka);
-//        System.out.println(k.toString());
-//        klijentService.add(k);
-//        return "redirect:/klijent";
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public ModelAndView save(HttpServletRequest request, HttpServletResponse response) {
+        Klijent k = new Klijent();
+        String email = request.getParameter("email");
+        String korisnickoIme = request.getParameter("korisnickoIme");
+        String ime = request.getParameter("ime");
+        String prezime = request.getParameter("prezime");
+        String lozinka = request.getParameter("lozinka");
+      
+        k.setEmail(email);
+        k.setKorisnickoIme(korisnickoIme);
+        k.setIme(ime);
+        k.setPrezime(prezime);
+        k.setLozinka(lozinka);
+        System.out.println(k.toString());
+        List<Klijent> klijenti=klijentService.getAll();
+        ModelAndView modelAndView=new ModelAndView("redirect:/klijent");
+        for (Klijent klijent : klijenti) {
+            if(klijent.getEmail().equals(k.getEmail())){
+                  modelAndView.addObject("message", "Klijent sa tom email adresom vec postoji!");
+                  return modelAndView;
+            }
+        }
+        klijentService.add(k);
+        modelAndView.addObject("message", "Uspesno ste se registrovanali");
+      
+        return modelAndView;
+    }
+//       @RequestMapping(value = "/home", method = RequestMethod.GET)
+//    public ModelAndView home() {
+//        System.out.println("====================================================================");
+//        System.out.println("====================   CityController: home()    ===================");
+//        System.out.println("====================================================================");
+//         ModelAndView modelAndView=new ModelAndView("login");
+//        return modelAndView;
 //    }
-
 
 
 }

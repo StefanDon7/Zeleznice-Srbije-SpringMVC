@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -41,7 +42,7 @@ public class PolazakController {
     }
 
     @PostMapping(path = "find")
-    public String save(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView save(HttpServletRequest request, HttpServletResponse response) {
         Klijent k = new Klijent();
         String email = request.getParameter("email");
         String lozinka = request.getParameter("lozinka");
@@ -49,21 +50,21 @@ public class PolazakController {
         k.setEmail(email);
         k.setLozinka(lozinka);
         System.out.println(k.toString());
-        Klijent k1 = null;
-//        k1 = klijentService.getByEmailAndPassword(k);
         List<Klijent> klijenti=klijentService.getAll();
+                ModelAndView modelAndView=new ModelAndView("redirect:/home");
         for (Klijent klijent : klijenti) {
             if(klijent.getEmail().equals(k.getEmail()) && klijent.getLozinka().equals(k.getLozinka())){
-                 return "redirect:/polazak";
+                 modelAndView= new ModelAndView("redirect:/polazak");
+                 modelAndView.addObject("message", "Klijent: "+klijent.getIme()+" "+klijent.getPrezime());
+                 return modelAndView;
             }
         }
-            return "login";
+        modelAndView.addObject("message", "Pogresni parametri!");
+        return modelAndView;
     }
     
     @RequestMapping(value = "/polazak", method = RequestMethod.GET)
     public String polazakHome(HttpServletResponse response) {
-    
-        
        return "polazak";
     }
 }

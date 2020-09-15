@@ -17,19 +17,25 @@
      
         <put-attribute name="body" value=""></put-attribute>
     </definition>
-    <!-- index page -->
+    <!-- LOGIN page -->
     <definition name="login" extends="base-definition">
         <put-attribute name="title" value="Prijavljivanje"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/login.jsp">
         </put-attribute>
     </definition>
-    
-    
-       <definition name="klijent/register" extends="base-definition">
+     <!-- REGISTRACIJA page -->
+    <definition name="klijent/register" extends="base-definition">
         <put-attribute name="title" value="Registracija"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/klijent/register.jsp">
+        </put-attribute>
+    </definition>
+     <!-- ZA PRETRAZIVANJE POLAZAKA page -->
+    <definition name="polazak/home" extends="base-definition">
+        <put-attribute name="title" value="Registracija"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/polazak/home.jsp">
         </put-attribute>
     </definition>
 
