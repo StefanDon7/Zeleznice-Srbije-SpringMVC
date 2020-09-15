@@ -33,30 +33,26 @@ public class KlijentController {
         return "klijent/register";
     }
 
-//  @GetMapping(path="add")
-//    public String add() {
-//       return "klijent/add";
-//   }
 
-    @PostMapping(path = "save")
-    public String save(HttpServletRequest request, HttpServletResponse response) {
-        Klijent k = new Klijent();
-        String email = request.getParameter("email");
-        String korisnickoIme = request.getParameter("korisnickoIme");
-        String ime = request.getParameter("ime");
-        String prezime = request.getParameter("prezime");
-        String lozinka = request.getParameter("lozinka");
-      
-        k.setEmail(email);
-        k.setKorisnickoIme(korisnickoIme);
-        k.setIme(ime);
-        k.setPrezime(prezime);
-        k.setLozinka(lozinka);
-        System.out.println(k.toString());
-        klijentService.add(k);
-        return "redirect:/klijent";
-    }
-    
+//    @PostMapping(path = "save")
+//    public String save(HttpServletRequest request, HttpServletResponse response) {
+//        Klijent k = new Klijent();
+//        String email = request.getParameter("email");
+//        String korisnickoIme = request.getParameter("korisnickoIme");
+//        String ime = request.getParameter("ime");
+//        String prezime = request.getParameter("prezime");
+//        String lozinka = request.getParameter("lozinka");
+//      
+//        k.setEmail(email);
+//        k.setKorisnickoIme(korisnickoIme);
+//        k.setIme(ime);
+//        k.setPrezime(prezime);
+//        k.setLozinka(lozinka);
+//        System.out.println(k.toString());
+//        klijentService.add(k);
+//        return "redirect:/klijent";
+//    }
+
 
 
 }

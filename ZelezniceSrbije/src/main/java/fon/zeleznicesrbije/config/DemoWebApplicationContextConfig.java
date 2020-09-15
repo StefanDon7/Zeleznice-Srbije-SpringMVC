@@ -12,8 +12,14 @@ import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import fon.zeleznicesrbije.databaseconfig.DatabaseConfiguration;
+import fon.zeleznicesrbije.service.KlijentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 
 /**
@@ -29,16 +35,42 @@ import fon.zeleznicesrbije.databaseconfig.DatabaseConfiguration;
     "fon.zeleznicesrbije.*",
 })
 
-public class DemoWebApplicationContextConfig {
+public class DemoWebApplicationContextConfig implements WebMvcConfigurer{
 
-   
-    //konfiguracija view resolver-a
-    @Bean
-    ViewResolver createViewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/pages/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
+     private final KlijentService klijentService;
+
+    @Autowired
+    public DemoWebApplicationContextConfig(KlijentService klijentService) {
+        this.klijentService = klijentService;
     }
+
+    
+        @Bean
+    public ViewResolver tilesViewResolver() {
+        TilesViewResolver tilesViewResolver = new TilesViewResolver();
+        tilesViewResolver.setOrder(0);
+        return tilesViewResolver;
+    }
+
+    @Bean
+    public TilesConfigurer tilesCongigurer() {
+        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+        tilesConfigurer.setDefinitions(
+                new String[]{"/WEB-INF/pages/tiles/tiles.xml"}
+        );
+        return tilesConfigurer;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+    
+     @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/home").setViewName("login");
+    }
+
 
 }

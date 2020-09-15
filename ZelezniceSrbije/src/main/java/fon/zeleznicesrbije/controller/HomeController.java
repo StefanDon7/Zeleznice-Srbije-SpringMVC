@@ -10,6 +10,8 @@ package fon.zeleznicesrbije.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -18,12 +20,15 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 
 @Controller
-@RequestMapping(path = "/home")
 public class HomeController  {
 
-    @GetMapping
-    public String home(){
-        return "login";
+     @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView home() {
+        System.out.println("====================================================================");
+        System.out.println("====================   CityController: home()    ===================");
+        System.out.println("====================================================================");
+         ModelAndView modelAndView=new ModelAndView("login");
+        return modelAndView;
     }
 }
    

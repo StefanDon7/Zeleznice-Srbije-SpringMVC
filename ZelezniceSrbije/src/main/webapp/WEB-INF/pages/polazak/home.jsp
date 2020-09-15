@@ -13,5 +13,33 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+         <table>
+            <thead>
+                <tr>
+                    <th>Pocetna Stanica</th>
+                    <th>Krajnja Stanica</th>
+                    <th>Datum polaska</th>
+                    <th>Datum dolaska</th>
+                    <th>Tip linije</th>
+                    <th>Rezervisi</th>
+                </tr>
+            </thead>
+            <tbody>
+  <!--
+            <c:forEach var="polazak" items="${applicationScope.polasci}">
+                    <tr>
+                        <td>${polazak.linija.stanicaPocetna}</td>
+                        <td>${polazak.linija.stanicaPocetna}</td>
+                        <td>${polazak.datumPolaska}</td>
+                        <td>${polazak.datumDolaska}</td>
+                         <td>${polazak.datumDolaska}</td>
+                        <td>
+                             <a href="#">Rezervisi</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+-->
+            </tbody>
+        </table>
     </body>
 </html>
