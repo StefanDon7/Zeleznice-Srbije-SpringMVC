@@ -11,9 +11,9 @@
                 City
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="<c:url value = "/city"/>">City home</a>
-                <a class="dropdown-item" href="<c:url value = "/city/add"/>">City add</a>
-                <a class="dropdown-item" href="<c:url value = "/city/all"/>">City all</a>
+                <a class="dropdown-item" href="<c:url value = ""/>">City home</a>
+                <a class="dropdown-item" href="<c:url value = ""/>">City add</a> 
+             <a class="dropdown-item" href="<c:url value = "/"/>">City all</a> 
             </div>
         </div>
     </ul>

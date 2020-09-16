@@ -4,7 +4,7 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-        
+        <!--OSNOVNI DEFINITION BEZ MENIJA -->
     <definition name="base-definition"
                 template="/WEB-INF/pages/tiles/layout/defaultLayout.jsp">
         <put-attribute name="title" value=""></put-attribute>
@@ -17,6 +17,23 @@
      
         <put-attribute name="body" value=""></put-attribute>
     </definition>
+          <!--Sa menijem-->
+    <definition name="base-definition_menu"
+                template="/WEB-INF/pages/tiles/layout/defaultLayout_Menu.jsp">
+        <put-attribute name="title" value=""></put-attribute>
+        <put-attribute name="header"
+                       value="/WEB-INF/pages/tiles/template/defaultHeader.jsp">
+        </put-attribute>
+        <put-attribute name="footer"
+                       value="/WEB-INF/pages/tiles/template/defaultFooter.jsp">
+        </put-attribute>
+          <put-attribute name="menu"
+                       value="/WEB-INF/pages/tiles/template/defaultMenu.jsp">
+        </put-attribute>
+     
+        <put-attribute name="body" value=""></put-attribute>
+    </definition>
+    
     <!-- LOGIN page -->
     <definition name="login" extends="base-definition">
         <put-attribute name="title" value="Prijavljivanje"></put-attribute>
@@ -32,7 +49,7 @@
         </put-attribute>
     </definition>
      <!-- ZA PRETRAZIVANJE POLAZAKA page -->
-    <definition name="polazak/home" extends="base-definition">
+    <definition name="polazak/home" extends="base-definition_menu">
         <put-attribute name="title" value="Registracija"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/polazak/home.jsp">

@@ -11,12 +11,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-      <c:if test="${not empty message}">
+    <c:if test="${not empty message}">
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
     <body>
         <h1>Dobro dosli!</h1>
-         <table>
+        <table>
             <thead>
                 <tr>
                     <th>Pocetna Stanica</th>
@@ -28,21 +28,33 @@
                 </tr>
             </thead>
             <tbody>
-  <!--
-            <c:forEach var="polazak" items="${applicationScope.polasci}">
-                    <tr>
-                        <td>${polazak.linija.stanicaPocetna}</td>
-                        <td>${polazak.linija.stanicaPocetna}</td>
-                        <td>${polazak.datumPolaska}</td>
-                        <td>${polazak.datumDolaska}</td>
-                         <td>${polazak.datumDolaska}</td>
-                        <td>
-                             <a href="#">Rezervisi</a>
-                        </td>
-                    </tr>
-                </c:forEach>
--->
-            </tbody>
+
+            <div>
+                <p>Pocetna Stanica</p>
+                <select name="Pocetna Stanica" size="1" style="width:196px; padding:5px;" >
+                </select>
+            </div>
+            <div>
+                <p>Krajnja Stanica</p>
+                <select name="Krajnja Stanica" size="1" style="width:196px; padding:5px;" >
+                    </div>
+                </select>
+
+                <!--
+                          <c:forEach var="polazak" items="${applicationScope.polasci}">
+                                  <tr>
+                                      <td>${polazak.linija.stanicaPocetna}</td>
+                                      <td>${polazak.linija.stanicaPocetna}</td>
+                                      <td>${polazak.datumPolaska}</td>
+                                      <td>${polazak.datumDolaska}</td>
+                                       <td>${polazak.datumDolaska}</td>
+                                      <td>
+                                           <a href="#">Rezervisi</a>
+                                      </td>
+                                  </tr>
+                              </c:forEach>
+                -->
+                </tbody>
         </table>
     </body>
 </html>
