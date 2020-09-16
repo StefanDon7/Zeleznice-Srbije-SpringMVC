@@ -63,7 +63,7 @@ public class Stanica {
 
     @Override
     public String toString() {
-        return "Stanica{" + "stanicaID=" + stanicaID + ", nazivStanice=" + nazivStanice + ", mesto=" + mesto + '}';
+        return nazivStanice;
     }
     
     

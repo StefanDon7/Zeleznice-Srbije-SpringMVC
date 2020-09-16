@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(path = "/klijent")
 public class KlijentController {
 
-    private KlijentService klijentService;
+    private final KlijentService klijentService;
     @Autowired
     public KlijentController(KlijentService klijentService) {
         this.klijentService = klijentService;
@@ -64,6 +64,28 @@ public class KlijentController {
       
         return modelAndView;
     }
+    
+    @PostMapping(path = "find")
+    public ModelAndView find(HttpServletRequest request, HttpServletResponse response) {
+        Klijent k = new Klijent();
+        String email = request.getParameter("email");
+        String lozinka = request.getParameter("lozinka");
+
+        k.setEmail(email);
+        k.setLozinka(lozinka);
+        System.out.println(k.toString());
+        List<Klijent> klijenti=klijentService.getAll();
+                ModelAndView modelAndView=new ModelAndView("redirect:/home");
+        for (Klijent klijent : klijenti) {
+            if(klijent.getEmail().equals(k.getEmail()) && klijent.getLozinka().equals(k.getLozinka())){
+                 modelAndView= new ModelAndView("redirect:/polazak");
+                 modelAndView.addObject("message", "Klijent: "+klijent.getIme()+" "+klijent.getPrezime());
+                 return modelAndView;
+            }
+        }
+        modelAndView.addObject("message", "Pogresni parametri!");
+        return modelAndView;
+    }
 //       @RequestMapping(value = "/home", method = RequestMethod.GET)
 //    public ModelAndView home() {
 //        System.out.println("====================================================================");
@@ -72,6 +94,7 @@ public class KlijentController {
 //         ModelAndView modelAndView=new ModelAndView("login");
 //        return modelAndView;
 //    }
+    
 
 
 }

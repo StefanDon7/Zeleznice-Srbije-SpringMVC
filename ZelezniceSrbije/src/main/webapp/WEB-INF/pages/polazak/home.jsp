@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,12 +23,16 @@
         <table>
             <thead>
                 <tr>
-                    <th>Pocetna Stanica</th>
-                    <th>Krajnja Stanica</th>
-                    <th>Datum polaska</th>
-                    <th>Datum dolaska</th>
-                    <th>Tip linije</th>
-                    <th>Rezervisi</th>
+                    <th scope="col">#</th>
+                    <th  scope="col">Pocetna Stanica</th>
+                    <th  scope="col">Krajnja Stanica</th>
+                    <th  scope="col">Datum polaska</th>
+                    <th  scope="col">Vreme polaska</th>
+                    <th  scope="col">Datum dolaska</th>
+                    <th  scope="col">Vreme dolaska</th>
+                    <th scope="col">Tip linije</th>
+                    <th scope="col">Lista Medjustanica</th>
+                    <th scope="col">Rezervisi</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,24 +45,27 @@
             <div>
                 <p>Krajnja Stanica</p>
                 <select name="Krajnja Stanica" size="1" style="width:196px; padding:5px;" >
-                    </div>
                 </select>
-
-                <!--
-                          <c:forEach var="polazak" items="${applicationScope.polasci}">
-                                  <tr>
-                                      <td>${polazak.linija.stanicaPocetna}</td>
-                                      <td>${polazak.linija.stanicaPocetna}</td>
-                                      <td>${polazak.datumPolaska}</td>
-                                      <td>${polazak.datumDolaska}</td>
-                                       <td>${polazak.datumDolaska}</td>
-                                      <td>
-                                           <a href="#">Rezervisi</a>
-                                      </td>
-                                  </tr>
-                              </c:forEach>
-                -->
-                </tbody>
-        </table>
-    </body>
+            </div>
+            <c:forEach  items="${polasci}" var="polazak" varStatus="loop">
+                <tr>
+                    <td>${loop.index+1}</td>
+                    <td>${polazak.linija.stanicaPocetna}</td>
+                    <td>${polazak.linija.stanicaPocetna}</td>
+                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumPolaska}" /></td>
+                     <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumPolaska}" /></td>
+                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumDolaska}" /></td>
+                    <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumDolaska}" /></td>
+                    <td>${polazak.linija.tipLinije}</td>
+                    <td>
+                        <a href="#">ListaMedjustanica</a>
+                    </td>
+                    <td>
+                        <a href="#">Rezervisi polazak</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
 </html>

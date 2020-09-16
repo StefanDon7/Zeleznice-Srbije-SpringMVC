@@ -10,6 +10,7 @@ import fon.zeleznicesrbije.domain.Polazak;
 // */
 public interface PolazakRepository {
    List<Polazak> getAll();
+   List<Polazak> getAllByDate(Polazak p);
    Polazak getById(int id);
 
    
