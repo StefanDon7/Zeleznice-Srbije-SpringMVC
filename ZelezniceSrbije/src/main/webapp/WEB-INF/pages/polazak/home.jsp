@@ -19,7 +19,21 @@
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
     <body>
-        <h1>Dobro dosli!</h1>
+        <div>
+            <p>Pocetna Stanica</p>
+            <select name="Pocetna Stanica" size="1" style="width:196px; padding:5px;" >
+            </select>
+        </div>
+        <div>
+            <p>Krajnja Stanica</p>
+            <select name="Krajnja Stanica" size="1" style="width:196px; padding:5px;" >
+            </select>
+        </div>
+        <div>
+            <p>Datum</p>
+            <select name="Datum" size="1" style="width:196px; padding:5px;" >
+            </select>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -31,41 +45,32 @@
                     <th  scope="col">Datum dolaska</th>
                     <th  scope="col">Vreme dolaska</th>
                     <th scope="col">Tip linije</th>
+                    <th scope="col">Napomena</th>
                     <th scope="col">Lista Medjustanica</th>
                     <th scope="col">Rezervisi</th>
                 </tr>
             </thead>
             <tbody>
-
-            <div>
-                <p>Pocetna Stanica</p>
-                <select name="Pocetna Stanica" size="1" style="width:196px; padding:5px;" >
-                </select>
-            </div>
-            <div>
-                <p>Krajnja Stanica</p>
-                <select name="Krajnja Stanica" size="1" style="width:196px; padding:5px;" >
-                </select>
-            </div>
-            <c:forEach  items="${polasci}" var="polazak" varStatus="loop">
-                <tr>
-                    <td>${loop.index+1}</td>
-                    <td>${polazak.linija.stanicaPocetna}</td>
-                    <td>${polazak.linija.stanicaPocetna}</td>
-                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumPolaska}" /></td>
-                     <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumPolaska}" /></td>
-                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumDolaska}" /></td>
-                    <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumDolaska}" /></td>
-                    <td>${polazak.linija.tipLinije}</td>
-                    <td>
-                        <a href="#">ListaMedjustanica</a>
-                    </td>
-                    <td>
-                        <a href="#">Rezervisi polazak</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-</body>
+                <c:forEach  items="${polasciZaDanasnjiDatum}" var="polazak" varStatus="loop">
+                    <tr>
+                        <td>${loop.index+1}</td>
+                        <td>${polazak.linija.stanicaPocetna}</td>
+                        <td>${polazak.linija.stanicaPocetna}</td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumPolaska}" /></td>
+                        <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumPolaska}" /></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumDolaska}" /></td>
+                        <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumDolaska}" /></td>
+                        <td>${polazak.linija.tipLinije}</td>
+                        <td>${polazak.napomena}</td>
+                        <td>
+                            <a href="#">ListaMedjustanica</a>
+                        </td>
+                        <td>
+                            <a href="#">Rezervisi polazak</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </body>
 </html>

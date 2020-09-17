@@ -17,7 +17,7 @@ import fon.zeleznicesrbije.service.PolazakService;
 
 /**
  *
- * @author Korisnik
+ * @author Stefan
  */
 @Service
 public class PolazakServiceImpl implements PolazakService {

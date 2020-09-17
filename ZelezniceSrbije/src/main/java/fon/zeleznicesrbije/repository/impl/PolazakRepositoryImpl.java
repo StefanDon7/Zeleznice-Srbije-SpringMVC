@@ -28,7 +28,7 @@ public class PolazakRepositoryImpl implements PolazakRepository {
 
     @PersistenceContext
     EntityManager entityManager;
-    SimpleDateFormat smf=new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
@@ -43,13 +43,15 @@ public class PolazakRepositoryImpl implements PolazakRepository {
         String query = "select p from Polazak p";
         return entityManager.createQuery(query, Polazak.class).getResultList();
     }
-
-     @Transactional(propagation = Propagation.REQUIRED)
+    /* OVO NE RADI MORAM VIDETI KAKO DA IZVLACIM ZA DATUM ODREDJENI*/
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public List<Polazak> getAllByDate(Polazak p) {
-        String datum=smf.format(p.getDatumDolaska());
-        String query = "select p from Polazak p where DatumPolaska LIKE '"+datum+"%'";
-        return  entityManager.createQuery(query, Polazak.class).getResultList();
+        String datum = smf.format(p.getDatumPolaska());
+        System.out.println("**************************" + datum + "****************************************");
+        String query = "select p from Polazak p where  DatumPolaska LIKE '" + datum + "%'";
+
+        return (List<Polazak>)entityManager.createQuery(query, Polazak.class).getResultList();
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

@@ -52,8 +52,19 @@ public class PolazakController {
     }
     @ModelAttribute(name = "polasci")
     private List<Polazak> getPolasci() {
-        
         return polazakService.getAll();
+    }
+    
+    @ModelAttribute(name = "polasciZaDanasnjiDatum")
+    private List<Polazak> getPolasciZaDanasnjiDatum() {
+        Polazak p=new Polazak(new Date());
+        List<Polazak> polasci=new ArrayList<Polazak>();
+        try{
+            polasci=polazakService.getAllByDate(p);
+        }catch(java.lang.NullPointerException ex){
+            polasci=new ArrayList<>();
+        }
+        return polasci;
     }
     
 }

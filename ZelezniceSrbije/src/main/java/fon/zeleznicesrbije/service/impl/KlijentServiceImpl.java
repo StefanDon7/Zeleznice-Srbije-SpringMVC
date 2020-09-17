@@ -14,7 +14,7 @@ import fon.zeleznicesrbije.service.KlijentService;
 
 /**
  *
- * @author Korisnik
+ * @author Stefan
  */
 @Service
 public class KlijentServiceImpl implements KlijentService {
