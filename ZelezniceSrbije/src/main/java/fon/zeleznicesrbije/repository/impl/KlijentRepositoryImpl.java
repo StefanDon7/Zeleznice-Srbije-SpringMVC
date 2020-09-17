@@ -43,9 +43,12 @@ public class KlijentRepositoryImpl implements KlijentRepository {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public Klijent getByEmailAndPassword(Klijent k) {
-         String query = "select k from Klijent k where k.Email="+k.getEmail()+" and k.Lozinka="+k.getLozinka()+"";
-        return entityManager.createQuery(query, Klijent.class).getSingleResult();
+    public Klijent getByEmailAndPassword(Klijent k) throws javax.persistence.NoResultException{
+        if (TransactionSynchronizationManager.isActualTransactionActive()) {
+            TransactionStatus status = TransactionAspectSupport.currentTransactionStatus();
+        }
+        String query = "select k from Klijent k where Email = '" + k.getEmail() + "' and Lozinka = '" + k.getLozinka()+"'";
+        return (Klijent)entityManager.createQuery(query, Klijent.class).getSingleResult();
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

@@ -48,8 +48,8 @@ public class PolazakRepositoryImpl implements PolazakRepository {
     @Override
     public List<Polazak> getAllByDate(Polazak p) {
         String datum=smf.format(p.getDatumDolaska());
-        String query = "select p from Polazak p where p.datumPolaska LIKE "+datum+"%"+"";
-        return entityManager.createQuery(query, Polazak.class).getResultList();
+        String query = "select p from Polazak p where DatumPolaska LIKE '"+datum+"%'";
+        return  entityManager.createQuery(query, Polazak.class).getResultList();
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

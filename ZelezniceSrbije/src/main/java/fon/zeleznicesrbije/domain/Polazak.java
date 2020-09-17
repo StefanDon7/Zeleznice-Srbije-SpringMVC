@@ -21,6 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -57,6 +58,11 @@ public class Polazak implements Serializable{
     public Polazak(int polazakID) {
         this.polazakID = polazakID;
     }
+
+    public Polazak(Date datumPolaska) {
+        this.datumPolaska = datumPolaska;
+    }
+    
 
     public int getPolazakID() {
         return polazakID;

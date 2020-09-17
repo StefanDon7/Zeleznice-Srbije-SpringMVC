@@ -18,5 +18,8 @@ public interface PolazakService {
     List<Polazak> getAll();
 
     Polazak getById(int id);
+    
+    List<Polazak> getAllByDate(Polazak p);
+
  
 }

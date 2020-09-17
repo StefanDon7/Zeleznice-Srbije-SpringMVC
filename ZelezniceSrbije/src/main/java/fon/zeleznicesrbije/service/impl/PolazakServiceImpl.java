@@ -38,6 +38,11 @@ public class PolazakServiceImpl implements PolazakService {
         return polazakRepository.getById(id);
     }
 
+    @Override
+    public List<Polazak> getAllByDate(Polazak p) {
+        return polazakRepository.getAllByDate(p);
+    }
+
  
     
 
