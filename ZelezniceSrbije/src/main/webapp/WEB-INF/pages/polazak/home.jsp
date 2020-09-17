@@ -21,17 +21,30 @@
     <body>
         <div>
             <p>Pocetna Stanica</p>
-            <select name="Pocetna Stanica" size="1" style="width:196px; padding:5px;" >
+            <select name="PocetnaStanica" size="1" style="width:250px; padding:5px;" >
+
+                <c:forEach items="${stanice}" var="stanica">
+                    <option value="${stanica.stanicaID}">${stanica.nazivStanice}</option>
+                </c:forEach>
+
             </select>
         </div>
         <div>
             <p>Krajnja Stanica</p>
-            <select name="Krajnja Stanica" size="1" style="width:196px; padding:5px;" >
+            <select name="KrajnjaStanica" size="1" style="width:250px; padding:5px;" >
+                <c:forEach items="${stanice}" var="stanica">
+                    <option  value="${stanica.stanicaID}">${stanica.nazivStanice}</option>
+                </c:forEach>
             </select>
         </div>
         <div>
             <p>Datum</p>
-            <select name="Datum" size="1" style="width:196px; padding:5px;" >
+            <select name="Datum" size="1" style="width:125px; padding:5px;" >
+                
+                <c:forEach items="${datumi}" var="datum">
+                    <option  <td><fmt:formatDate pattern="dd-MM-yyyy" value="${datum}" /></td></option>
+                </c:forEach>
+               
             </select>
         </div>
         <table>
