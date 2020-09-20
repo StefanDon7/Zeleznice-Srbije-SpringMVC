@@ -4,17 +4,11 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">My web MVC application</a>
+    <a class="navbar-brand" href="<c:url value="/polazak"/>">RED VOZNJE</a>
+    <a class="navbar-brand" href="<c:url value="/polazak"/>">MOJ NALOG</a>
+    <a class="navbar-brand" href="<c:url value="/polazak"/>">MOJE REZERVACIJE</a>
     <ul class="navbar-nav mr-auto d-flex justify-content-end">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                City
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="<c:url value = ""/>">City home</a>
-                <a class="dropdown-item" href="<c:url value = ""/>">City add</a> 
-             <a class="dropdown-item" href="<c:url value = "/"/>">City all</a> 
-            </div>
-        </div>
+     
     </ul>
+    <a class="navbar-brand" href="<c:url value="/home"/>">ODJAVA</a>
 </nav>

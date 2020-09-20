@@ -19,34 +19,38 @@
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
     <body>
-        <div>
-            <p>Pocetna Stanica</p>
-            <select name="PocetnaStanica" size="1" style="width:250px; padding:5px;" >
+        <form action="${pageContext.request.contextPath}/polazak/find" method="post">
+            <div>
+                <p>Pocetna Stanica</p>
+                <select name="PocetnaStanica" size="1" style="width:250px; padding:5px;" >
 
-                <c:forEach items="${stanice}" var="stanica">
-                    <option value="${stanica.stanicaID}">${stanica.nazivStanice}</option>
-                </c:forEach>
+                    <c:forEach items="${stanice}" var="stanica">
+                        <option value="${stanica.stanicaID}">${stanica.nazivStanice}</option>
+                    </c:forEach>
 
-            </select>
-        </div>
-        <div>
-            <p>Krajnja Stanica</p>
-            <select name="KrajnjaStanica" size="1" style="width:250px; padding:5px;" >
-                <c:forEach items="${stanice}" var="stanica">
-                    <option  value="${stanica.stanicaID}">${stanica.nazivStanice}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div>
-            <p>Datum</p>
-            <select name="Datum" size="1" style="width:125px; padding:5px;" >
-                
-                <c:forEach items="${datumi}" var="datum">
-                    <option  <td><fmt:formatDate pattern="dd-MM-yyyy" value="${datum}" /></td></option>
-                </c:forEach>
-               
-            </select>
-        </div>
+                </select>
+            </div>
+            <div>
+                <p>Krajnja Stanica</p>
+                <select name="KrajnjaStanica" size="1" style="width:250px; padding:5px;" >
+                    <c:forEach items="${stanice}" var="stanica">
+                        <option  value="${stanica.stanicaID}">${stanica.nazivStanice}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div>
+                <p>Za datum</p>
+                <select name="Datum" size="1" style="width:125px; padding:5px;" >
+                    <c:forEach items="${datumi}" var="datum">
+                        <option  <td><fmt:formatDate pattern="dd-MM-yyyy" value="${datum}" /></td></option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div>
+                <p>Pretrazi polaske</p>
+                <button id="find" type="submit" class="pretragabtn">Pretraga</button>
+            </div>
+        </form>
         <table>
             <thead>
                 <tr>

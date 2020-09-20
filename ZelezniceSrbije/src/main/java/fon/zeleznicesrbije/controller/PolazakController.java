@@ -11,10 +11,13 @@ import fon.zeleznicesrbije.domain.Stanica;
 import fon.zeleznicesrbije.service.KlijentService;
 import fon.zeleznicesrbije.service.PolazakService;
 import fon.zeleznicesrbije.service.StanicaService;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +90,34 @@ public class PolazakController {
             polasci = new ArrayList<>();
         }
         return polasci;
+    }
+
+    @PostMapping(path = "find")
+    public ModelAndView find(HttpServletRequest request, HttpServletResponse response) {
+        Polazak p = new Polazak();
+        SimpleDateFormat smf = new SimpleDateFormat("dd-MM-yyyy");
+        String stanicaPocetna = request.getParameter("PocetnaStanica");
+        int stanicaP = Integer.parseInt(stanicaPocetna);
+        String stanicaKrajnja = request.getParameter("KrajnjaStanica");
+        int stanicaK = Integer.parseInt(stanicaKrajnja);
+        String datum = request.getParameter("Datum");
+        Date date = new Date();
+        try {
+            date = smf.parse(datum);
+        } catch (ParseException ex) {
+            Logger.getLogger(PolazakController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        p.setDatumPolaska(date);
+        List<Polazak> polasci = polazakService.getAllByDate(p);
+        ArrayList<Polazak> listaZaPrikaz=new ArrayList<>();
+        for (Polazak polazak : polasci) {
+            if (polazak.getLinija().getStanicaPocetna().getStanicaID() == stanicaP && polazak.getLinija().getStanicaKrajnja().getStanicaID() == stanicaK) {
+                listaZaPrikaz.add(polazak);
+            }
+        }
+        ModelAndView modelAndView = new ModelAndView("polazak/home");
+        modelAndView.addObject("polasciZaDanasnjiDatum",listaZaPrikaz);
+        return modelAndView;
     }
 
 }
