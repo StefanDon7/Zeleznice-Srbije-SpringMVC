@@ -5,8 +5,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a class="navbar-brand" href="<c:url value="/polazak"/>">RED VOZNJE</a>
-    <a class="navbar-brand" href="<c:url value="/polazak"/>">MOJ NALOG</a>
-    <a class="navbar-brand" href="<c:url value="/polazak"/>">MOJE REZERVACIJE</a>
+    <a class="navbar-brand" href="<c:url value="/polazak/nalog"/>">MOJ NALOG</a>
+    <a class="navbar-brand" href="<c:url value="/polazak/rezervacije"/>">MOJE REZERVACIJE</a>
     <ul class="navbar-nav mr-auto d-flex justify-content-end">
      
     </ul>

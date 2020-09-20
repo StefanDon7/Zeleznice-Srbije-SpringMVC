@@ -36,25 +36,41 @@
     
     <!-- LOGIN page -->
     <definition name="login" extends="base-definition">
-        <put-attribute name="title" value="Prijavljivanje"></put-attribute>
+        <put-attribute name="title" value="Prijavljivanje | Zeleznice Srbije"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/login.jsp">
         </put-attribute>
     </definition>
      <!-- REGISTRACIJA page -->
     <definition name="klijent/register" extends="base-definition">
-        <put-attribute name="title" value="Registracija"></put-attribute>
+        <put-attribute name="title" value="Registracija | Zeleznice Srbije"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/klijent/register.jsp">
         </put-attribute>
     </definition>
      <!-- ZA PRETRAZIVANJE POLAZAKA page -->
     <definition name="polazak/home" extends="base-definition_menu">
-        <put-attribute name="title" value="Registracija"></put-attribute>
+        <put-attribute name="title" value="Red voznje | Zeleznice Srbije"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/polazak/home.jsp">
         </put-attribute>
     </definition>
+        <!-- REZERVACIJE -->
+    <definition name="polazak/rezervacije" extends="base-definition_menu">
+        <put-attribute name="title" value="Moje rezervacije | Zeleznice Srbije"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/polazak/rezervacije.jsp">
+        </put-attribute>
+    </definition>
+       <!-- MOJ NALOG -->
+    <definition name="polazak/nalog" extends="base-definition_menu">
+        <put-attribute name="title" value="Moj nalog | Zeleznice Srbije"></put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/polazak/nalog.jsp">
+        </put-attribute>
+    </definition>
+
+
 
 
 </tiles-definitions>

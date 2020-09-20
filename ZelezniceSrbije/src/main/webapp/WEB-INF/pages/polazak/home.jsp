@@ -72,7 +72,7 @@
                     <tr>
                         <td>${loop.index+1}</td>
                         <td>${polazak.linija.stanicaPocetna}</td>
-                        <td>${polazak.linija.stanicaPocetna}</td>
+                        <td>${polazak.linija.stanicaKrajnja}</td>
                         <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumPolaska}" /></td>
                         <td><fmt:formatDate pattern="HH:mm" value="${polazak.datumPolaska}" /></td>
                         <td><fmt:formatDate pattern="dd-MM-yyyy" value="${polazak.datumDolaska}" /></td>

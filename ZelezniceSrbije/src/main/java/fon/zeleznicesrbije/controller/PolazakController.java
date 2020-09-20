@@ -53,9 +53,15 @@ public class PolazakController {
         return "polazak/home";
     }
 
-    @RequestMapping(value = "/polazak", method = RequestMethod.GET)
-    public ModelAndView polazakHome(HttpServletResponse response) {
-        ModelAndView modelAndView = new ModelAndView("polazak/home");
+    @GetMapping(value = "/polazak/rezervacija")
+    public ModelAndView rezervacija() {
+        ModelAndView modelAndView = new ModelAndView("polazak/rezervacija");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/polazak/nalog")
+    public ModelAndView nalog() {
+        ModelAndView modelAndView = new ModelAndView("polazak/nalog");
         return modelAndView;
     }
 
@@ -109,14 +115,14 @@ public class PolazakController {
         }
         p.setDatumPolaska(date);
         List<Polazak> polasci = polazakService.getAllByDate(p);
-        ArrayList<Polazak> listaZaPrikaz=new ArrayList<>();
+        ArrayList<Polazak> listaZaPrikaz = new ArrayList<>();
         for (Polazak polazak : polasci) {
             if (polazak.getLinija().getStanicaPocetna().getStanicaID() == stanicaP && polazak.getLinija().getStanicaKrajnja().getStanicaID() == stanicaK) {
                 listaZaPrikaz.add(polazak);
             }
         }
         ModelAndView modelAndView = new ModelAndView("polazak/home");
-        modelAndView.addObject("polasciZaDanasnjiDatum",listaZaPrikaz);
+        modelAndView.addObject("polasciZaDanasnjiDatum", listaZaPrikaz);
         return modelAndView;
     }
 

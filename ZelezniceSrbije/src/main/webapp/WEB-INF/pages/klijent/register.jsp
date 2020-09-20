@@ -17,7 +17,7 @@
     <body>
         <div>
             <c:if test="${not empty message}">
-                <div class="alert alert-info" role="alert mb-2">${message}</div>
+                 <h3 style="color: red;">${message}</h3>
             </c:if>
             <form action="${pageContext.request.contextPath}/klijent/save" method="post">
                 <div class="container">
