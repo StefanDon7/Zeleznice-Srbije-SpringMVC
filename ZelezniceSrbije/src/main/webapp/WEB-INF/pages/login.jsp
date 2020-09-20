@@ -11,8 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
-
+    ${message}
     <body>
         <h1>Uloguj se</h1>
          <form action="${pageContext.request.contextPath}/klijent/find" method="post">

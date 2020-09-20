@@ -5,31 +5,22 @@
  */
 package fon.zeleznicesrbije.controller;
 
-
-
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 
 /**
  *
  * @author Stefan
  */
-
 @Controller
-public class HomeController  {
+public class HomeController {
 
-     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView home() {
-         ModelAndView modelAndView=new ModelAndView("login");
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView home(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("login");
         return modelAndView;
     }
 }
-   
-
- 
-
-
