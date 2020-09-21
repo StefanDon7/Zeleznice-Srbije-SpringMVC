@@ -14,7 +14,7 @@
             <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css'>
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap-table/1.16.0/dist/bootstrap-table.min.css'>
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/font-awesome/5.6.3/css/all.min.css'>
-        <link href='${pageContext.request.contextPath}/resources/css/styles.css' rel="stylesheet"/>
+        <link href='${pageContext.request.contextPath}/resources/css/style.css' rel="stylesheet"/>
 
     </head>
     <body>

@@ -17,5 +17,31 @@
     </head>
     <body>
         <h1>REZERVACIJE</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th  scope="col">Polazak</th>
+                    <th  scope="col">Pocetna</th>
+                    <th  scope="col">Datum polaska</th>
+                    <th  scope="col">Datum dolaska</th>
+                    <th scope="col">Otkazi rezervaciju</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach  items="${rezervacije}" var="rezervacija" varStatus="loop">
+                    <tr>
+                        <td>${loop.index+1}</td>
+                        <td>${rezervacija.polazak.linija.stanicaPocetna}</td>
+                        <td>${rezervacija.polazak.linija.stanicaKrajnja}</td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumPolaska}" /></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumDolaska}" /></td>
+                        <td>
+                            <a href="#">Rezervisi polazak</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </body>
 </html>

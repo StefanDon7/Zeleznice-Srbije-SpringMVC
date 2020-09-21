@@ -19,6 +19,7 @@
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
     <body>
+     
         <form action="${pageContext.request.contextPath}/polazak/find" method="post">
             <div>
                 <p>Pocetna Stanica</p>

@@ -16,6 +16,42 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>NALOG</h1>
+        <div>
+            <c:if test="${not empty message}">
+                <h3 style="color: red;">${message}</h3>
+            </c:if>
+
+     
+                <div class="container">
+                    <hr>
+                    <div>
+                        <label for="email"><b>Email</b></label>
+                        <div>
+                            <p>${sessionScope.loginUser.email}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Ime"><b>Ime</b></label>
+                        <div>
+                            <p>${sessionScope.loginUser.ime}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Prezime"><b>Prezime</b></label>
+                        <div>
+                            <p>${sessionScope.loginUser.prezime}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="KorisnickoIme"><b>Korisnicko ime</b></label>
+                        <div>
+                            <div>
+                                <p>${sessionScope.loginUser.korisnickoIme}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+        </div>
     </body>
 </html>

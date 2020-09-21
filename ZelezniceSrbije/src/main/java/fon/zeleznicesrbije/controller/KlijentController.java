@@ -83,6 +83,9 @@ public class KlijentController {
         } catch (javax.persistence.NoResultException ex) {
             redirectAttributes.addFlashAttribute("message", "Pogresni parametri!");
             return modelAndView;
+        } catch (Exception ex) {
+            modelAndView = new ModelAndView("redirect:/error");
+            return modelAndView;
         }
         modelAndView = new ModelAndView("redirect:/polazak");
         request.getSession(true).setAttribute("loginUser", klijent);
@@ -100,7 +103,7 @@ public class KlijentController {
         if (session != null) {
             session.invalidate();
         }
-         redirectAttributes.addFlashAttribute("message", "User success logout!");
+        redirectAttributes.addFlashAttribute("message", "User success logout!");
 //        request.getSession().invalidate();
         return modelAndView;
     }

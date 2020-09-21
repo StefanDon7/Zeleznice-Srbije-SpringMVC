@@ -56,21 +56,28 @@
         </put-attribute>
     </definition>
         <!-- REZERVACIJE -->
-    <definition name="polazak/rezervacije" extends="base-definition_menu">
+    <definition name="rezervacije" extends="base-definition_menu">
         <put-attribute name="title" value="Moje rezervacije | Zeleznice Srbije"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/polazak/rezervacije.jsp">
         </put-attribute>
     </definition>
        <!-- MOJ NALOG -->
-    <definition name="polazak/nalog" extends="base-definition_menu">
+    <definition name="nalog" extends="base-definition_menu">
         <put-attribute name="title" value="Moj nalog | Zeleznice Srbije"></put-attribute>
         <put-attribute name="body"
                        value="/WEB-INF/pages/polazak/nalog.jsp">
         </put-attribute>
     </definition>
-
-
-
+       <!-- EXCEPTION -->
+       <definition name="error/globalException"
+                extends="base-definition">
+        <put-attribute name="title"
+                       value="Exception">
+        </put-attribute>
+        <put-attribute name="body"
+                       value="/WEB-INF/pages/error/globalException.jsp">
+        </put-attribute>
+    </definition>	
 
 </tiles-definitions>

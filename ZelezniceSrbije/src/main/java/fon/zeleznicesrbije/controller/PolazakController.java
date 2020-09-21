@@ -7,6 +7,7 @@ package fon.zeleznicesrbije.controller;
 
 import fon.zeleznicesrbije.domain.Klijent;
 import fon.zeleznicesrbije.domain.Polazak;
+import fon.zeleznicesrbije.domain.Rezervacija;
 import fon.zeleznicesrbije.domain.Stanica;
 import fon.zeleznicesrbije.service.KlijentService;
 import fon.zeleznicesrbije.service.PolazakService;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,15 +55,25 @@ public class PolazakController {
         return "polazak/home";
     }
 
-    @GetMapping(value = "/polazak/rezervacija")
-    public ModelAndView rezervacija() {
-        ModelAndView modelAndView = new ModelAndView("polazak/rezervacija");
+    @GetMapping(value = "/rezervacije")
+    public ModelAndView rezervacija(HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("rezervacije");
+        Klijent klijent = (Klijent) httpServletRequest.getSession(false).getAttribute("loginUser");
+        if (klijent == null) {
+            modelAndView = new ModelAndView("klijent/register");
+            System.out.println("klijent je null");
+        }
         return modelAndView;
     }
 
-    @GetMapping(value = "/polazak/nalog")
-    public ModelAndView nalog() {
-        ModelAndView modelAndView = new ModelAndView("polazak/nalog");
+    @GetMapping(value = "/nalog")
+    public ModelAndView nalog(HttpServletRequest httpServletRequest) {
+        ModelAndView modelAndView = new ModelAndView("nalog");
+        Klijent klijent = (Klijent) httpServletRequest.getSession(false).getAttribute("loginUser");
+        if (klijent == null) {
+            modelAndView = new ModelAndView("klijent/register");
+            System.out.println("klijent je null");
+        }
         return modelAndView;
     }
 
@@ -74,6 +86,10 @@ public class PolazakController {
     private List<Stanica> getStanice() {
         return stanicaService.getAll();
     }
+//    @ModelAttribute(name = "rezervacije")
+//    private List<Rezervacija> getRezervacije() {
+//        return stanicaService.getAll();
+//    }
 
     @ModelAttribute(name = "datumi")
     private List<Date> getDates() {
