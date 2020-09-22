@@ -14,7 +14,7 @@
         <button id="logout" type="submit" class="logoutbtn">Odjavi se</button>
     </form>
 </nav>
-Ulogovan:
-<p>${sessionScope.loginUser.ime} ${sessionScope.loginUser.prezime}</p>
+<b>Ulogovan:</b>
+<b><p>${sessionScope.loginUser.ime} ${sessionScope.loginUser.prezime}</p> </b>
 
 </div>

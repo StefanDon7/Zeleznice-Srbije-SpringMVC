@@ -8,6 +8,7 @@ package fon.zeleznicesrbije.controller;
 import fon.zeleznicesrbije.domain.Klijent;
 import fon.zeleznicesrbije.domain.Polazak;
 import fon.zeleznicesrbije.domain.Rezervacija;
+import fon.zeleznicesrbije.domain.RezervacijaCompositeKey;
 import fon.zeleznicesrbije.domain.Stanica;
 import fon.zeleznicesrbije.service.KlijentService;
 import fon.zeleznicesrbije.service.PolazakService;
@@ -23,14 +24,13 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -46,7 +46,7 @@ public class PolazakController {
     private final RezervacijaService rezervacijaService;
 
     @Autowired
-    public PolazakController(KlijentService klijentService, PolazakService polazakService, StanicaService stanicaService,RezervacijaService rezervacijaService) {
+    public PolazakController(KlijentService klijentService, PolazakService polazakService, StanicaService stanicaService, RezervacijaService rezervacijaService) {
         this.klijentService = klijentService;
         this.polazakService = polazakService;
         this.stanicaService = stanicaService;
@@ -66,6 +66,8 @@ public class PolazakController {
             modelAndView = new ModelAndView("klijent/register");
             System.out.println("klijent je null");
         }
+        
+        modelAndView.addObject("rezervacije", rezervacijaService.getAllForKlijent(klijent.getKlijentID()));
         return modelAndView;
     }
 
@@ -76,6 +78,10 @@ public class PolazakController {
         if (klijent == null) {
             modelAndView = new ModelAndView("klijent/register");
             System.out.println("klijent je null");
+        }
+        List<Rezervacija> lista = rezervacijaService.getAll();
+        for (Rezervacija rezervacija : lista) {
+            System.out.println(rezervacija.toString());
         }
         return modelAndView;
     }
@@ -88,16 +94,6 @@ public class PolazakController {
     @ModelAttribute(name = "stanice")
     private List<Stanica> getStanice() {
         return stanicaService.getAll();
-    }
-    
-    @ModelAttribute(name = "rezervacije")
-    private List<Rezervacija> getRezervacije() {
-        System.out.println("****************************************************************");
-        System.out.println("***********************LISTA REZERVACIJA*************************");
-        System.out.println("****************************************************************");
-        
-        
-        return rezervacijaService.getAll();
     }
 
     @ModelAttribute(name = "datumi")
@@ -148,6 +144,30 @@ public class PolazakController {
         }
         ModelAndView modelAndView = new ModelAndView("polazak/home");
         modelAndView.addObject("polasciZaDanasnjiDatum", listaZaPrikaz);
+        return modelAndView;
+    }
+
+//    @PostMapping(path = "otkaziRezervaciju")
+//    public void otkazi(HttpServletRequest request, HttpServletResponse response) {
+//
+////        return modelAndView;
+//    }
+    @PostMapping(path = "/rezervisi")
+    public ModelAndView rezervisi(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+
+        String polazakID = request.getParameter("polazakId");
+        int pID = Integer.parseInt(polazakID);
+        Klijent klijent = (Klijent) request.getSession(false).getAttribute("loginUser");
+        System.out.println("klijent rezervise polazak: " + polazakID + " " + klijent.getKlijentID());
+        Rezervacija rezervacija = new Rezervacija(klijent, new Polazak(pID), new Date());
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/polazak");
+        try {
+            Rezervacija rez=rezervacijaService.add(rezervacija);
+            redirectAttributes.addFlashAttribute("message", "Uspesno ste se rezervisali kartu za polazak!");
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("message", "Doslo je do greske! Ne mozemo da rezervisemo ovaj polazak!");
+        }
         return modelAndView;
     }
 

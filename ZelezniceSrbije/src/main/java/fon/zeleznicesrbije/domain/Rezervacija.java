@@ -19,46 +19,37 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "rezervacija")
-public class Rezervacija implements Serializable {
+public class Rezervacija implements Serializable{
 
     @EmbeddedId
     //Json Ignore bibliotka dependency
-    CompositeKey key;
+    RezervacijaCompositeKey key;
+    
     @ManyToOne
-    @JoinColumn(name = "KlijentID")
+    @JoinColumn(name = "KlijentID", insertable = false, updatable = false)
     private Klijent klijent;
+    
     @ManyToOne
-    @JoinColumn(name = "PolazakID")
+    @JoinColumn(name = "PolazakID", insertable = false, updatable = false)
     private Polazak polazak;
+    
     private Date date;
 
     public Rezervacija() {
     }
 
-    public Rezervacija(Klijent klijent, Polazak polazak, Date date) {
+    public Rezervacija(Klijent klijent, Polazak polazk, Date date) {
         this.klijent = klijent;
-        this.polazak = polazak;
+        this.polazak = polazk;
         this.date = date;
-    }
-
-    public Rezervacija(CompositeKey key, Date date) {
-        this.key = key;
-        this.date = date;
+        this.key = new RezervacijaCompositeKey(klijent.getId(), polazk.getPolazakID());
     }
     
-
-    public Rezervacija(CompositeKey key, Klijent klijent, Polazak polazak, Date date) {
-        this.key = key;
-        this.klijent = klijent;
-        this.polazak = polazak;
-        this.date = date;
-    }
-
-    public CompositeKey getKey() {
+    public RezervacijaCompositeKey getKey() {
         return key;
     }
 
-    public void setKey(CompositeKey key) {
+    public void setKey(RezervacijaCompositeKey key) {
         this.key = key;
     }
 
@@ -68,14 +59,20 @@ public class Rezervacija implements Serializable {
 
     public void setKlijent(Klijent klijent) {
         this.klijent = klijent;
+        if(this.key == null)
+            this.key = new RezervacijaCompositeKey();
+        this.key.setKlijentID(klijent.getId());
     }
 
-    public Polazak getPolazk() {
+    public Polazak getPolazak() {
         return polazak;
     }
 
-    public void setPolazk(Polazak polazak) {
+    public void setPolazak(Polazak polazak) {
         this.polazak = polazak;
+        if(this.key == null)
+            this.key = new RezervacijaCompositeKey();
+        this.key.setPolazakID(polazak.getPolazakID());
     }
 
     public Date getDate() {
@@ -86,4 +83,8 @@ public class Rezervacija implements Serializable {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "Rezervacija{" + "key=" + key + ", klijent=" + klijent + ", polazk=" + polazak + ", date=" + date + '}';
+    }
 }

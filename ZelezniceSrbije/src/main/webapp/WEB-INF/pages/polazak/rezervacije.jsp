@@ -17,7 +17,7 @@
     </head>
     <body>
         <h1>REZERVACIJE</h1>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -29,8 +29,9 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach  items="${rezervacija}" var="rezervacija" varStatus="loop">
-                    <tr>
+                <c:forEach  items="${rezervacije}" var="rezervacija" varStatus="loop">
+                    <tr> 
+
                         <td>${loop.index+1}</td>
                         <td>${rezervacija.polazak.linija.stanicaPocetna.nazivStanice}</td>
                         <td>${rezervacija.polazak.linija.stanicaKrajnja.nazivStanice}</td>

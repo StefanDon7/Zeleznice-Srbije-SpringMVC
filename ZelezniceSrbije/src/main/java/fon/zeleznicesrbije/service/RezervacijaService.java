@@ -5,9 +5,8 @@ package fon.zeleznicesrbije.service;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.List;
-import fon.zeleznicesrbije.domain.CompositeKey;
+import fon.zeleznicesrbije.domain.RezervacijaCompositeKey;
 import fon.zeleznicesrbije.domain.Rezervacija;
 
 /**
@@ -15,12 +14,14 @@ import fon.zeleznicesrbije.domain.Rezervacija;
  * @author Stefan
  */
 public interface RezervacijaService {
-    
+
     List<Rezervacija> getAll();
 
-    Rezervacija getById(CompositeKey ck);
+    List<Rezervacija> getAllForKlijent(int klijentID);
 
-    void add(Rezervacija rezervacija);
-    
+    Rezervacija getById(RezervacijaCompositeKey ck);
+
+    Rezervacija add(Rezervacija rezervacija);
+
     void remove(Rezervacija rezervacija);
 }

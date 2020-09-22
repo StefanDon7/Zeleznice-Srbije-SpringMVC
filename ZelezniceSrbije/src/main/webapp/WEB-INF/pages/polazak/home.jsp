@@ -14,6 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+          <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <c:if test="${not empty message}">
         <div class="alert alert-info" role="alert mb-2">${message}</div>
@@ -52,7 +53,7 @@
                 <button id="find" type="submit" class="pretragabtn">Pretraga</button>
             </div>
         </form>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -81,6 +82,7 @@
                         <td>${polazak.napomena}</td>
                         <td>
                             <form action="${pageContext.request.contextPath}/polazak/rezervisi" method="POST">
+                                <input type="hidden" name="polazakId" value="${polazak.polazakID}" />
                                 <button id="rezervisi" type="submit" class="rezervisibtn">Rezervisi kartu</button>
                             </form>
                         </td>

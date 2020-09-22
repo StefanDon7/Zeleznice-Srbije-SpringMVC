@@ -13,14 +13,17 @@ import javax.persistence.Embeddable;
  * @author Stefan
  */
 @Embeddable
-public class CompositeKey implements Serializable{
+public class RezervacijaCompositeKey implements Serializable{
+
     private int klijentID;
+    
+
     private int polazakID;
 
-    public CompositeKey() {
+    public RezervacijaCompositeKey() {
     }
 
-    public CompositeKey(int klijentID, int polazakID) {
+    public RezervacijaCompositeKey(int klijentID, int polazakID) {
         this.klijentID = klijentID;
         this.polazakID = polazakID;
     }
@@ -41,8 +44,7 @@ public class CompositeKey implements Serializable{
         this.polazakID = polazakID;
     }
     
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -60,7 +62,7 @@ public class CompositeKey implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CompositeKey other = (CompositeKey) obj;
+        final RezervacijaCompositeKey other = (RezervacijaCompositeKey) obj;
         if (this.klijentID != other.klijentID) {
             return false;
         }
@@ -69,4 +71,5 @@ public class CompositeKey implements Serializable{
         }
         return true;
     }
+
 }
