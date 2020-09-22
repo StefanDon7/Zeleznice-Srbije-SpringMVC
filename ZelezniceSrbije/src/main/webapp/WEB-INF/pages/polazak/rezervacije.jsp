@@ -15,6 +15,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <c:if test="${not empty message}">
+        <div class="alert alert-info" role="alert mb-2">${message}</div>
+    </c:if>
     <body>
         <h1>REZERVACIJE</h1>
         <table class="table table-striped">
@@ -39,6 +42,7 @@
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumDolaska}" /></td>
                         <td>
                             <form action="${pageContext.request.contextPath}/polazak/otkaziRezervaciju" method="POST">
+                                <input type="hidden" name="polazakId" value="${rezervacija.polazak.polazakID}" />
                                 <button id="otkazi" type="submit" class="otkazibtn">Otkazi rezervaciju</button>
                             </form>
                         </td>

@@ -66,7 +66,7 @@ public class PolazakController {
             modelAndView = new ModelAndView("klijent/register");
             System.out.println("klijent je null");
         }
-        
+
         modelAndView.addObject("rezervacije", rezervacijaService.getAllForKlijent(klijent.getKlijentID()));
         return modelAndView;
     }
@@ -147,11 +147,23 @@ public class PolazakController {
         return modelAndView;
     }
 
-//    @PostMapping(path = "otkaziRezervaciju")
-//    public void otkazi(HttpServletRequest request, HttpServletResponse response) {
-//
-////        return modelAndView;
-//    }
+    @PostMapping(path = "otkaziRezervaciju")
+    public ModelAndView otkazi(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        String polazakID = request.getParameter("polazakId");
+        int pID = Integer.parseInt(polazakID);
+        Klijent klijent = (Klijent) request.getSession(false).getAttribute("loginUser");
+        Rezervacija rezervacija = new Rezervacija(klijent, new Polazak(pID), new Date());
+        ModelAndView modelAndView = new ModelAndView("redirect:/polazak/rezervacije");
+        try {
+            rezervacijaService.remove(rezervacija);
+            redirectAttributes.addFlashAttribute("message", "Uspesno ste otkazali rezervaciju");
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("message", "Doslo je do greske! Ne mozemo da otkazemo ovu rezervaciju!");
+        }
+        return modelAndView;
+
+    }
+
     @PostMapping(path = "/rezervisi")
     public ModelAndView rezervisi(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
@@ -163,7 +175,7 @@ public class PolazakController {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/polazak");
         try {
-            Rezervacija rez=rezervacijaService.add(rezervacija);
+            Rezervacija rez = rezervacijaService.add(rezervacija);
             redirectAttributes.addFlashAttribute("message", "Uspesno ste se rezervisali kartu za polazak!");
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("message", "Doslo je do greske! Ne mozemo da rezervisemo ovaj polazak!");
