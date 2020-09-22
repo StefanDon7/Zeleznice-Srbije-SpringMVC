@@ -64,7 +64,6 @@
                     <th  scope="col">Vreme dolaska</th>
                     <th scope="col">Tip linije</th>
                     <th scope="col">Napomena</th>
-                    <th scope="col">Lista Medjustanica</th>
                     <th scope="col">Rezervisi</th>
                 </tr>
             </thead>
@@ -81,10 +80,9 @@
                         <td>${polazak.linija.tipLinije}</td>
                         <td>${polazak.napomena}</td>
                         <td>
-                            <a href="#">ListaMedjustanica</a>
-                        </td>
-                        <td>
-                            <a href="#">Rezervisi polazak</a>
+                            <form action="${pageContext.request.contextPath}/polazak/rezervisi" method="POST">
+                                <button id="rezervisi" type="submit" class="rezervisibtn">Rezervisi kartu</button>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>

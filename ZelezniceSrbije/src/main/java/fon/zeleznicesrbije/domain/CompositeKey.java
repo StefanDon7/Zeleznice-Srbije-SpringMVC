@@ -24,6 +24,23 @@ public class CompositeKey implements Serializable{
         this.klijentID = klijentID;
         this.polazakID = polazakID;
     }
+
+    public int getKlijentID() {
+        return klijentID;
+    }
+
+    public void setKlijentID(int klijentID) {
+        this.klijentID = klijentID;
+    }
+
+    public int getPolazakID() {
+        return polazakID;
+    }
+
+    public void setPolazakID(int polazakID) {
+        this.polazakID = polazakID;
+    }
+    
     
     
     @Override

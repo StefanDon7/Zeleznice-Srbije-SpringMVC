@@ -89,7 +89,7 @@ public class KlijentController {
         }
         modelAndView = new ModelAndView("redirect:/polazak");
         request.getSession(true).setAttribute("loginUser", klijent);
-        redirectAttributes.addFlashAttribute("message", "Klijent: " + klijent.getIme() + " " + klijent.getPrezime());
+        redirectAttributes.addFlashAttribute("message", "Dobrodosli: " + klijent.getIme() + " " + klijent.getPrezime());
         return modelAndView;
     }
 
@@ -103,7 +103,7 @@ public class KlijentController {
         if (session != null) {
             session.invalidate();
         }
-        redirectAttributes.addFlashAttribute("message", "User success logout!");
+        redirectAttributes.addFlashAttribute("message", "Uspesno ste se odjavili!");
 //        request.getSession().invalidate();
         return modelAndView;
     }

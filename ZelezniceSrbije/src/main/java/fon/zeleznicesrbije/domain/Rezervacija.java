@@ -29,15 +29,15 @@ public class Rezervacija implements Serializable {
     private Klijent klijent;
     @ManyToOne
     @JoinColumn(name = "PolazakID")
-    private Polazak polazk;
+    private Polazak polazak;
     private Date date;
 
     public Rezervacija() {
     }
 
-    public Rezervacija(Klijent klijent, Polazak polazk, Date date) {
+    public Rezervacija(Klijent klijent, Polazak polazak, Date date) {
         this.klijent = klijent;
-        this.polazk = polazk;
+        this.polazak = polazak;
         this.date = date;
     }
 
@@ -47,10 +47,10 @@ public class Rezervacija implements Serializable {
     }
     
 
-    public Rezervacija(CompositeKey key, Klijent klijent, Polazak polazk, Date date) {
+    public Rezervacija(CompositeKey key, Klijent klijent, Polazak polazak, Date date) {
         this.key = key;
         this.klijent = klijent;
-        this.polazk = polazk;
+        this.polazak = polazak;
         this.date = date;
     }
 
@@ -71,11 +71,11 @@ public class Rezervacija implements Serializable {
     }
 
     public Polazak getPolazk() {
-        return polazk;
+        return polazak;
     }
 
-    public void setPolazk(Polazak polazk) {
-        this.polazk = polazk;
+    public void setPolazk(Polazak polazak) {
+        this.polazak = polazak;
     }
 
     public Date getDate() {

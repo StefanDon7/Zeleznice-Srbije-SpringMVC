@@ -11,6 +11,7 @@ import fon.zeleznicesrbije.domain.Rezervacija;
 import fon.zeleznicesrbije.domain.Stanica;
 import fon.zeleznicesrbije.service.KlijentService;
 import fon.zeleznicesrbije.service.PolazakService;
+import fon.zeleznicesrbije.service.RezervacijaService;
 import fon.zeleznicesrbije.service.StanicaService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,12 +43,14 @@ public class PolazakController {
     private final KlijentService klijentService;
     private final PolazakService polazakService;
     private final StanicaService stanicaService;
+    private final RezervacijaService rezervacijaService;
 
     @Autowired
-    public PolazakController(KlijentService klijentService, PolazakService polazakService, StanicaService stanicaService) {
+    public PolazakController(KlijentService klijentService, PolazakService polazakService, StanicaService stanicaService,RezervacijaService rezervacijaService) {
         this.klijentService = klijentService;
         this.polazakService = polazakService;
         this.stanicaService = stanicaService;
+        this.rezervacijaService = rezervacijaService;
     }
 
     @GetMapping
@@ -86,10 +89,16 @@ public class PolazakController {
     private List<Stanica> getStanice() {
         return stanicaService.getAll();
     }
-//    @ModelAttribute(name = "rezervacije")
-//    private List<Rezervacija> getRezervacije() {
-//        return stanicaService.getAll();
-//    }
+    
+    @ModelAttribute(name = "rezervacije")
+    private List<Rezervacija> getRezervacije() {
+        System.out.println("****************************************************************");
+        System.out.println("***********************LISTA REZERVACIJA*************************");
+        System.out.println("****************************************************************");
+        
+        
+        return rezervacijaService.getAll();
+    }
 
     @ModelAttribute(name = "datumi")
     private List<Date> getDates() {

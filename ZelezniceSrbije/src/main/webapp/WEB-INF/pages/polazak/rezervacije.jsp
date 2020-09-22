@@ -29,15 +29,17 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach  items="${rezervacije}" var="rezervacija" varStatus="loop">
+                <c:forEach  items="${rezervacija}" var="rezervacija" varStatus="loop">
                     <tr>
                         <td>${loop.index+1}</td>
-                        <td>${rezervacija.polazak.linija.stanicaPocetna}</td>
-                        <td>${rezervacija.polazak.linija.stanicaKrajnja}</td>
+                        <td>${rezervacija.polazak.linija.stanicaPocetna.nazivStanice}</td>
+                        <td>${rezervacija.polazak.linija.stanicaKrajnja.nazivStanice}</td>
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumPolaska}" /></td>
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumDolaska}" /></td>
                         <td>
-                            <a href="#">Rezervisi polazak</a>
+                            <form action="${pageContext.request.contextPath}/polazak/otkaziRezervaciju" method="POST">
+                                <button id="otkazi" type="submit" class="otkazibtn">Otkazi rezervaciju</button>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
