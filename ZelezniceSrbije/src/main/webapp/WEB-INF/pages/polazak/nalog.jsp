@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+      <body class="body">
         <div>
             <c:if test="${not empty message}">
                 <h3 style="color: red;">${message}</h3>

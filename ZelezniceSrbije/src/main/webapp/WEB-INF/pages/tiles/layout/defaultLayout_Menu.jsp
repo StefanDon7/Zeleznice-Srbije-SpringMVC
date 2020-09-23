@@ -3,6 +3,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,18 +15,19 @@
             <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css'>
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap-table/1.16.0/dist/bootstrap-table.min.css'>
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/font-awesome/5.6.3/css/all.min.css'>
-        <link href='${pageContext.request.contextPath}/resources/css/style.css' rel="stylesheet"/>
+        <link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/style.css'/>
+
 
     </head>
     <body>
         <header id ="header">
             <tiles:insertAttribute name="header"/>
         </header>
-        
+
         <section id="sidemenu">
             <tiles:insertAttribute name="menu"/>
         </section>
-        
+
         <section id="site-content">
             <tiles:insertAttribute name="body"/>
         </section>

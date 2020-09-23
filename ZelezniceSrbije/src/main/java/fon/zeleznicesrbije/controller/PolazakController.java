@@ -59,12 +59,13 @@ public class PolazakController {
     }
 
     @GetMapping(value = "/rezervacije")
-    public ModelAndView rezervacija(HttpServletRequest httpServletRequest) {
+    public ModelAndView rezervacija(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         ModelAndView modelAndView = new ModelAndView("rezervacije");
         Klijent klijent = (Klijent) httpServletRequest.getSession(false).getAttribute("loginUser");
         if (klijent == null) {
             modelAndView = new ModelAndView("klijent/register");
             System.out.println("klijent je null");
+            return modelAndView;
         }
 
         modelAndView.addObject("rezervacije", rezervacijaService.getAllForKlijent(klijent.getKlijentID()));
@@ -72,16 +73,13 @@ public class PolazakController {
     }
 
     @GetMapping(value = "/nalog")
-    public ModelAndView nalog(HttpServletRequest httpServletRequest) {
+    public ModelAndView nalog(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         ModelAndView modelAndView = new ModelAndView("nalog");
         Klijent klijent = (Klijent) httpServletRequest.getSession(false).getAttribute("loginUser");
         if (klijent == null) {
             modelAndView = new ModelAndView("klijent/register");
             System.out.println("klijent je null");
-        }
-        List<Rezervacija> lista = rezervacijaService.getAll();
-        for (Rezervacija rezervacija : lista) {
-            System.out.println(rezervacija.toString());
+            return modelAndView;
         }
         return modelAndView;
     }
@@ -120,7 +118,7 @@ public class PolazakController {
     }
 
     @PostMapping(path = "find")
-    public ModelAndView find(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView find(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         Polazak p = new Polazak();
         SimpleDateFormat smf = new SimpleDateFormat("dd-MM-yyyy");
         String stanicaPocetna = request.getParameter("PocetnaStanica");
@@ -135,14 +133,17 @@ public class PolazakController {
             Logger.getLogger(PolazakController.class.getName()).log(Level.SEVERE, null, ex);
         }
         p.setDatumPolaska(date);
+        ModelAndView modelAndView = new ModelAndView("polazak/home");
         List<Polazak> polasci = polazakService.getAllByDate(p);
+        if (polasci.size() == 0) {
+            modelAndView.addObject("message", "Nema polazaka na relaciji: " + stanicaPocetna + " - " + stanicaKrajnja + " za datum " + datum);
+        }
         ArrayList<Polazak> listaZaPrikaz = new ArrayList<>();
         for (Polazak polazak : polasci) {
             if (polazak.getLinija().getStanicaPocetna().getStanicaID() == stanicaP && polazak.getLinija().getStanicaKrajnja().getStanicaID() == stanicaK) {
                 listaZaPrikaz.add(polazak);
             }
         }
-        ModelAndView modelAndView = new ModelAndView("polazak/home");
         modelAndView.addObject("polasciZaDanasnjiDatum", listaZaPrikaz);
         return modelAndView;
     }

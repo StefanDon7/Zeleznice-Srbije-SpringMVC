@@ -1,7 +1,18 @@
+<style>
+    /* Style the header links */
+  .body{
+      background-color: #bbb;
+        font-weight: initial;
+        line-height:30px;
+    }
+
+</style>  
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 
 <!DOCTYPE html>
 <html>

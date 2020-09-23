@@ -48,14 +48,19 @@ public class KlijentController {
         String ime = request.getParameter("ime");
         String prezime = request.getParameter("prezime");
         String lozinka = request.getParameter("lozinka");
-
+        String lozinka2 = request.getParameter("ponovoLozinka");
+         ModelAndView modelAndView = new ModelAndView("redirect:/klijent");
+        if(!lozinka.equals(lozinka2)){
+             redirectAttributes.addFlashAttribute("message", "Ponovljena lozinka nije dobra!");
+             return modelAndView;
+        }
         k.setEmail(email);
         k.setKorisnickoIme(korisnickoIme);
         k.setIme(ime);
         k.setPrezime(prezime);
         k.setLozinka(lozinka);
         System.out.println(k.toString());
-        ModelAndView modelAndView = new ModelAndView("redirect:/klijent");
+       
         try {
             klijentService.add(k);
             redirectAttributes.addFlashAttribute("message", "Uspesno ste se registrovanali");

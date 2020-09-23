@@ -1,21 +1,24 @@
 <style>
-    header {
-        background:url("https://image.freepik.com/free-vector/high-speed-train_23-2147510731");
-        /* background could either be on h1 or a */
-        background-size:cover;/* optionnal */
+    /* Style the header links */
+    .masthead{
+        height: 150px;
+        background-color:#26272b;
+        padding:45px 0 20px;
+        font-size:15px;
+        line-height:15px;
+        color:#737373;
     }
-    header, h1 , h1 a  {/* size them all at once */
-        display:block;
-        height:500px;
-    }
-    a {
-        text-indent:0px;/* hide text from screen */
-        /* still not working ? set background here or give it a color 
-        almost transparent so it can catch click event : 
-        background:rgba(0,0,0,0.001);*/
-    }
-
 </style>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
-<hr> </hr>
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <h1 class="font-weight-light">Zeleznice Srbije</h1>
+                <p class="lead">Putujte sa nama</p>
+            </div>
+        </div>
+    </div>
+</header>

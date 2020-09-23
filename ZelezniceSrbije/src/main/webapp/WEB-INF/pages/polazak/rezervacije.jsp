@@ -18,7 +18,7 @@
     <c:if test="${not empty message}">
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
-    <body>
+      <body class="body">
         <h1>REZERVACIJE</h1>
         <table class="table table-striped">
             <thead>

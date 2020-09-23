@@ -19,9 +19,9 @@
     <c:if test="${not empty message}">
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
-    <body>
+       <body class="body">
      
-        <form action="${pageContext.request.contextPath}/polazak/find" method="post">
+        <form action="${pageContext.request.contextPath}/polazak/find" method="POST">
             <div>
                 <p>Pocetna Stanica</p>
                 <select name="PocetnaStanica" size="1" style="width:250px; padding:5px;" >

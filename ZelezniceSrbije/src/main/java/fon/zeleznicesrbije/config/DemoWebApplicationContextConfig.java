@@ -21,7 +21,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-
 /**
  *
  * @author Stefan
@@ -32,20 +31,18 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @EnableTransactionManagement
 @Import(DatabaseConfiguration.class)
 @ComponentScan(basePackages = {
-    "fon.zeleznicesrbije.*",
-})
+    "fon.zeleznicesrbije.*",})
 
-public class DemoWebApplicationContextConfig implements WebMvcConfigurer{
+public class DemoWebApplicationContextConfig implements WebMvcConfigurer {
 
-     private final KlijentService klijentService;
+    private final KlijentService klijentService;
 
     @Autowired
     public DemoWebApplicationContextConfig(KlijentService klijentService) {
         this.klijentService = klijentService;
     }
 
-    
-        @Bean
+    @Bean
     public ViewResolver tilesViewResolver() {
         TilesViewResolver tilesViewResolver = new TilesViewResolver();
         tilesViewResolver.setOrder(0);
@@ -66,11 +63,10 @@ public class DemoWebApplicationContextConfig implements WebMvcConfigurer{
         registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-    
-     @Override
+
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("login");
     }
-
 
 }

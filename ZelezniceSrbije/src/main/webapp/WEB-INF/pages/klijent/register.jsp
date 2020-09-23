@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
 
-    <body>
+      <body class="body">
         <div>
             <c:if test="${not empty message}">
                 <h3 style="color: red;">${message}</h3>
