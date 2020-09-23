@@ -3,6 +3,12 @@
     Created on : Sep 20, 2020, 7:47:42 PM
     Author     : Stefan
 --%>
+<style>
+    .dopuna{
+        height: 300px;
+    }
+</style>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,6 +20,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+           <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <c:if test="${not empty message}">
         <div class="alert alert-info" role="alert mb-2">${message}</div>
@@ -53,5 +60,6 @@
                 </tbody>
             </table>
         </div>
+        <p class="dopuna"></p>
     </body>
 </html>

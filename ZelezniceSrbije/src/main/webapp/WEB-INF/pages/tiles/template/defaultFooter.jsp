@@ -15,6 +15,10 @@
     --------------------------------------------------------------*/
     .site-footer
     {
+        clear: both;
+        position: relative;
+        height: 200px;
+        margin-top: 100px;
         height: 150px;
         background-color:#26272b;
         padding:45px 0 20px;

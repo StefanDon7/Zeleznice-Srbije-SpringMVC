@@ -14,7 +14,7 @@
         margin-left: 30px; 
     }
     .table{
-        margin-left: 30px;
+  
     }
     .button{
         margin-left: 30px; 
@@ -43,7 +43,7 @@
         font-size: 16px;
     }
     .logoutbtn{
-           background-color: #3366cc; /* Green */
+        background-color: #3366cc; /* Green */
         border: none;
         color: white;
         padding: 7px 32px;
