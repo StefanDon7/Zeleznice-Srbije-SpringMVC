@@ -8,7 +8,6 @@ package fon.zeleznicesrbije.controller;
 import fon.zeleznicesrbije.domain.Klijent;
 import fon.zeleznicesrbije.domain.Polazak;
 import fon.zeleznicesrbije.domain.Rezervacija;
-import fon.zeleznicesrbije.domain.RezervacijaCompositeKey;
 import fon.zeleznicesrbije.domain.Stanica;
 import fon.zeleznicesrbije.service.KlijentService;
 import fon.zeleznicesrbije.service.PolazakService;
@@ -150,11 +149,27 @@ public class PolazakController {
 
     @PostMapping(path = "otkaziRezervaciju")
     public ModelAndView otkazi(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String polazakID = request.getParameter("polazakId");
         int pID = Integer.parseInt(polazakID);
+        String datum = request.getParameter("datumPolaska");
+        System.out.println("*****DATUMM****" + datum);
+        ModelAndView modelAndView = new ModelAndView("redirect:/polazak/rezervacije");
+        Date date = null;
+        try {
+            date = sdf.parse(datum);
+            System.out.println("*****DATUMM****" + date);
+        } catch (ParseException ex) {
+            Logger.getLogger(PolazakController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Date datumSad = new Date();
+        if (datumSad.after(date)) {
+            redirectAttributes.addFlashAttribute("message", "Polazak je vec realizovan. Nemoguce ga je otkazati");
+            return modelAndView;
+        }
         Klijent klijent = (Klijent) request.getSession(false).getAttribute("loginUser");
         Rezervacija rezervacija = new Rezervacija(klijent, new Polazak(pID), new Date());
-        ModelAndView modelAndView = new ModelAndView("redirect:/polazak/rezervacije");
+
         try {
             rezervacijaService.remove(rezervacija);
             redirectAttributes.addFlashAttribute("message", "Uspesno ste otkazali rezervaciju");
@@ -167,14 +182,40 @@ public class PolazakController {
 
     @PostMapping(path = "/rezervisi")
     public ModelAndView rezervisi(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String polazakID = request.getParameter("polazakId");
         int pID = Integer.parseInt(polazakID);
+        String datum = request.getParameter("datumPolaska");
+        String napomena = request.getParameter("napomena");
+
+        System.out.println("***DATUM***" + datum);
+        ModelAndView modelAndView = new ModelAndView("redirect:/polazak");
+        if (napomena.contains("Otkazan")) {
+             redirectAttributes.addFlashAttribute("message", "Polazak je otkazan! Nemoguce ga je otkazati!");
+            return modelAndView;
+        }
+        Date date = null;
+        try {
+            date = sdf.parse(datum);
+            System.out.println("***DATUM***" + date);
+        } catch (ParseException ex) {
+            Logger.getLogger(PolazakController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         Klijent klijent = (Klijent) request.getSession(false).getAttribute("loginUser");
+        if (klijent == null) {
+            modelAndView = new ModelAndView("klijent/register");
+            System.out.println("klijent je null");
+            return modelAndView;
+        }
+        Date datumSad = new Date();
+        if (datumSad.after(date)) {
+            redirectAttributes.addFlashAttribute("message", "Polazak je vec realizovan. Nemoguce ga je otkazati!");
+            return modelAndView;
+        }
         System.out.println("klijent rezervise polazak: " + polazakID + " " + klijent.getKlijentID());
         Rezervacija rezervacija = new Rezervacija(klijent, new Polazak(pID), new Date());
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/polazak");
         try {
             Rezervacija rez = rezervacijaService.add(rezervacija);
             redirectAttributes.addFlashAttribute("message", "Uspesno ste se rezervisali kartu za polazak!");

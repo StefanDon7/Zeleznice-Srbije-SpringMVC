@@ -3,6 +3,67 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+<style>
+    .alert alert-info{
+        margin-left: 30px;
+    }
+    .select{
+        margin-left: 30px;
+    }
+    .p{
+        margin-left: 30px; 
+    }
+    .table{
+        margin-left: 30px;
+    }
+    .button{
+        margin-left: 30px; 
+    }
+    .h1{
+        margin-left: 30px; 
+    }
+      .otkazibtn {
+        background-color: #ea4c89; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    .pretragabtn{
+         background-color: #3366cc; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    .logoutbtn{
+           background-color: #3366cc; /* Green */
+        border: none;
+        color: white;
+        padding: 7px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: ruby;
+        font-size: 16px;
+    }
+    
+    .rezervisibtn{
+         background-color: #3366cc; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+</style>
 
 <!DOCTYPE html>
 <html>

@@ -10,10 +10,10 @@
     <ul class="navbar-nav mr-auto d-flex justify-content-end">
         
     </ul>
+    <a class="navbar-brand" >${sessionScope.loginUser.ime} ${sessionScope.loginUser.prezime}</a>
     <form action="${pageContext.request.contextPath}/klijent/logout" method="GET">
         <button id="logout" type="submit" class="logoutbtn">Odjavi se</button>
     </form>
 </nav>
-${sessionScope.loginUser.ime} ${sessionScope.loginUser.prezime}
 
 </div>

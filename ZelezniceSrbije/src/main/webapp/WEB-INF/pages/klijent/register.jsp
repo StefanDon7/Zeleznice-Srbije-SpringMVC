@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+        
     </head>
 
       <body class="body">
@@ -25,8 +25,7 @@
                 <div class="container">
 
                     <h1>Registruj se</h1>
-                    <p>Popuni sledеca polja kako bi se registrovao.</p>
-                    <p>Sva polja su obavezna.</p>
+                
                     <hr>
                     <div>
                         <label for="email"><b>Email</b></label>
@@ -38,7 +37,7 @@
                     <div>
                         <label for="korisnickoIme"><b>Korisnicko ime</b></label>
                         <div>
-                        <input type="text" placeholder="Unesi korisničko Ime" name="korisnickoIme" id="korisnickoIme" required>
+                        <input type="text" placeholder="Unesi korisnicko Ime" name="korisnickoIme" id="korisnickoIme" required>
                         </div>
                     </div>
                     <div>

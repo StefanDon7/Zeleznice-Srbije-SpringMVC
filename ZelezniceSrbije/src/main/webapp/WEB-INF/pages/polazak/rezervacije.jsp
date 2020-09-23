@@ -18,37 +18,40 @@
     <c:if test="${not empty message}">
         <div class="alert alert-info" role="alert mb-2">${message}</div>
     </c:if>
-      <body class="body">
-        <h1>REZERVACIJE</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th  scope="col">Polazak</th>
-                    <th  scope="col">Pocetna</th>
-                    <th  scope="col">Datum polaska</th>
-                    <th  scope="col">Datum dolaska</th>
-                    <th scope="col">Otkazi rezervaciju</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach  items="${rezervacije}" var="rezervacija" varStatus="loop">
-                    <tr> 
-
-                        <td>${loop.index+1}</td>
-                        <td>${rezervacija.polazak.linija.stanicaPocetna.nazivStanice}</td>
-                        <td>${rezervacija.polazak.linija.stanicaKrajnja.nazivStanice}</td>
-                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumPolaska}" /></td>
-                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumDolaska}" /></td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/polazak/otkaziRezervaciju" method="POST">
-                                <input type="hidden" name="polazakId" value="${rezervacija.polazak.polazakID}" />
-                                <button id="otkazi" type="submit" class="otkazibtn">Otkazi rezervaciju</button>
-                            </form>
-                        </td>
+    <body class="body">
+        <h1 class="h1">Lista rezervacija</h1>
+        <div class="container"> 
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th  scope="col">Polazak</th>
+                        <th  scope="col">Pocetna</th>
+                        <th  scope="col">Datum polaska</th>
+                        <th  scope="col">Datum dolaska</th>
+                        <th scope="col">Otkazi rezervaciju</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <c:forEach  items="${rezervacije}" var="rezervacija" varStatus="loop">
+                        <tr> 
+
+                            <td>${loop.index+1}</td>
+                            <td>${rezervacija.polazak.linija.stanicaPocetna.nazivStanice}</td>
+                            <td>${rezervacija.polazak.linija.stanicaKrajnja.nazivStanice}</td>
+                            <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumPolaska}" /></td>
+                            <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${rezervacija.polazak.datumDolaska}" /></td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/polazak/otkaziRezervaciju" method="POST">
+                                    <input type="hidden" name="polazakId" value="${rezervacija.polazak.polazakID}" />
+                                    <input type="hidden" name="datumPolaska" value="${rezervacija.polazak.datumPolaska}" />
+                                    <button id="otkazi" type="submit" class="otkazibtn">Otkazi rezervaciju</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

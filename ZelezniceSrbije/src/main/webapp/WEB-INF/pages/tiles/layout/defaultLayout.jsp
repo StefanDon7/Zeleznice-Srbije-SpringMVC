@@ -1,9 +1,29 @@
 <style>
-    /* Style the header links */
-  .body{
-      background-color: #bbb;
-        font-weight: initial;
-        line-height:30px;
+.loginbtn{
+         background-color: #3366cc; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    .registerbtn{
+         background-color: #3366cc; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    .h1{
+        margin-left: 15px; 
+    }
+    .p{
+        margin-left: 15px; 
     }
 
 </style>  
