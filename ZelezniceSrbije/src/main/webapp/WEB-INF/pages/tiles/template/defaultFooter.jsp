@@ -32,9 +32,11 @@
 <footer class="site-footer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <h6>Zeleznice Srbije</h6>
-                <p class="text-justify"><i>Putujte sa nama </i> </p>
+            <div class="col-sm-12 col-md-12">
+                <h6> <div>  <a href="https://github.com/StefanDon7/ZelezniceSrbijeWeb">Zeleznice Srbije WEB</a></div>
+                    <div>  <a href="https://github.com/StefanDon7/ZelezniceSrbije-server-maven">Zeleznice Srbije Desktop Admin</a></div>
+                    <div>  <a href="https://github.com/StefanDon7/ZelezniceSrbije-klijent-maven">Zeleznice Srbije Desktop Klijent</a></div>
+                    <div>  <a href="https://github.com/StefanDon7/ZelezniceSrbije-lib-maven">Zeleznice Srbije Desktop Lib</a></div></h6>
             </div>
         </div>
     </div>

@@ -3,7 +3,11 @@
     Created on : Sep 10, 2020, 6:10:58 PM
     Author     : Stefan
 --%>
-
+<style>
+    .dopuna{
+        height: 300px;
+    }
+</style>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -46,5 +50,6 @@
                 <p></p>
             </div>
         </div>
+               <p class="dopuna"></p>
     </body>
 </html>
